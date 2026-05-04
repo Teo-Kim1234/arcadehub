@@ -1,4 +1,4 @@
-const CACHE_NAME = 'arcade-hub-v1';
+const CACHE_NAME = 'arcade-hub-v2';
 const ASSETS = [
   './',
   './index.html',

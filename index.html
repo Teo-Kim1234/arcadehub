@@ -179,9 +179,13 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
+                // Use relative path for GitHub Pages
+                const swPath = window.location.pathname.includes('mini-game-hub') 
+                    ? '/mini-game-hub/sw.js' 
+                    : './sw.js';
+                navigator.serviceWorker.register(swPath)
                     .then(reg => console.log('Service Worker Registered'))
-                    .catch(err => console.log('Service Worker Registration Failed'));
+                    .catch(err => console.log('Service Worker Registration Failed', err));
             });
         }
     </script>
