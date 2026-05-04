@@ -167,7 +167,8 @@
                 card.onclick = () => openDetail(song);
                 list.appendChild(card);
             });
-            if (window.parent && window.parent.stopHubMusic) window.parent.stopHubMusic();
+            // Keep BGM on in the menu!
+            if (window.parent && window.parent.startHubMusic) window.parent.startHubMusic();
         }
 
         function openDetail(song) {
@@ -191,11 +192,15 @@
         function showView(id) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            if (id === 'menu' && player && isPlayerReady) player.stopVideo();
+            if (id === 'menu' && player && isPlayerReady) {
+                player.stopVideo();
+                if (window.parent && window.parent.startHubMusic) window.parent.startHubMusic();
+            }
         }
 
         function startPlay() {
             if (!isPlayerReady) { alert("연결 중..."); return; }
+            if (window.parent && window.parent.stopHubMusic) window.parent.stopHubMusic();
             document.getElementById('loading').style.display = 'flex';
             player.seekTo(0);
             player.playVideo();

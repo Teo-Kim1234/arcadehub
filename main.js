@@ -102,8 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Level Calculation
         const level = Math.floor(Math.sqrt(total / 100)) + 1;
         userLevelDisplay.textContent = `LV.${level}`;
-        
-        // Progress bar (if added later)
     }
 
     // --- Global Functions (Accessible from iframes) ---
@@ -129,13 +127,18 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // --- Navigation ---
-    function showScreen(screenKey, pushState = true) {
+    function showScreen(screenKey, pushState = true, gameId = null) {
         Object.values(screens).forEach(s => s.classList.remove("active"));
         screens[screenKey].classList.add("active");
         
         if (screenKey === 'game') {
             document.body.classList.add('game-mode');
-            stopMusic();
+            // Only stop music if it's the rhythm game (rhythm game will handle its own timing)
+            if (gameId === 'rhythm') {
+                // We'll let the rhythm game menu decide when to stop it
+            } else {
+                if (isMusicEnabled) startMusic();
+            }
         } else {
             document.body.classList.remove('game-mode');
             gameStage.innerHTML = ''; // Stop game when leaving
@@ -152,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function launchGame(gameId, pushState = true) {
         gameStage.innerHTML = ''; 
         const iframe = document.createElement('iframe');
-        // Ensure relative path from the current location
         const gamePath = `./games/${gameId}/index.html`;
         iframe.src = gamePath;
         iframe.style.width = '100%';
@@ -168,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
             'rhythm': '리듬 대시'
         };
         gameTitle.textContent = titles[gameId] || gameId.toUpperCase();
-        showScreen('game', false);
+        showScreen('game', false, gameId);
 
         if (pushState) {
             history.pushState({ screen: 'game', gameId }, '', '#' + gameId);
@@ -216,6 +218,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (toggleMusic) {
         toggleMusic.onchange = (e) => {
             isMusicEnabled = e.target.checked;
+            if (isMusicEnabled) startMusic();
+            else stopMusic();
         };
     }
 
