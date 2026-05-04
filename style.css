@@ -240,11 +240,11 @@ header {
     position: relative;
 }
 
-.tetris-bg { background-image: linear-gradient(45deg, rgba(0,0,0,0.5), transparent), url('static/tetris_cover.png'); }
-.snake-bg { background-image: linear-gradient(45deg, rgba(0,0,0,0.5), transparent), url('static/snake_cover_v2.png'); }
-.bg-2048 { background-image: linear-gradient(45deg, rgba(0,0,0,0.5), transparent), url('static/2048_cover.png'); }
-.minesweeper-bg { background-image: linear-gradient(45deg, rgba(0,0,0,0.5), transparent), url('static/minesweeper_cover.png'); }
-.bg-rhythm { background-image: linear-gradient(45deg, rgba(0,0,0,0.5), transparent), url('static/rhythm_cover.png'); }
+.tetris-bg { background-image: linear-gradient(45deg, rgba(0,0,0,0.5), transparent), url('assets/tetris_cover.png'); }
+.snake-bg { background-image: linear-gradient(45deg, rgba(0,0,0,0.5), transparent), url('assets/snake_cover_v2.png'); }
+.bg-2048 { background-image: linear-gradient(45deg, rgba(0,0,0,0.5), transparent), url('assets/2048_cover.png'); }
+.minesweeper-bg { background-image: linear-gradient(45deg, rgba(0,0,0,0.5), transparent), url('assets/minesweeper_cover.png'); }
+.bg-rhythm { background-image: linear-gradient(45deg, rgba(0,0,0,0.5), transparent), url('assets/rhythm_cover.png'); }
 
 .card-overlay {
     position: absolute;

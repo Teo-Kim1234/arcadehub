@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         gameStage.innerHTML = ''; 
         const iframe = document.createElement('iframe');
         // Ensure relative path from the current location
-        const gamePath = `./play/${gameId}/index.html`;
+        const gamePath = `./games/${gameId}/index.html`;
         iframe.src = gamePath;
         iframe.style.width = '100%';
         iframe.style.height = '100%';
