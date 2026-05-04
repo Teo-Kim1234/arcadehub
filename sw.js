@@ -4,7 +4,13 @@ const ASSETS = [
   './index.html',
   './style.css',
   './main.js',
-  './games/rhythm/index.html'
+  './manifest.json',
+  './play/rhythm/index.html',
+  './play/2048/index.html',
+  './play/snake/index.html',
+  './play/minesweeper/index.html',
+  './play/tetris/index.html',
+  './play/tetris/app.js'
 ];
 
 self.addEventListener('install', (event) => {

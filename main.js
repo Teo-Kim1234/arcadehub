@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const minesweeperHighScoreDisplay = document.getElementById("minesweeper-high-score");
     const rhythmHighScoreDisplay = document.getElementById("rhythm-high-score");
     const btnBackToHub = document.getElementById("btn-back-to-hub");
+    const userLevelDisplay = document.createElement('div');
+    userLevelDisplay.className = 'level-badge';
+    document.querySelector('.logo').appendChild(userLevelDisplay);
 
     // --- Sound System ---
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -92,8 +95,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (score2048Display) score2048Display.textContent = highScores['2048'];
         if (minesweeperHighScoreDisplay) minesweeperHighScoreDisplay.textContent = highScores.minesweeper;
         if (rhythmHighScoreDisplay) rhythmHighScoreDisplay.textContent = highScores.rhythm;
+        
         const total = Object.values(highScores).reduce((a, b) => a + b, 0);
-        totalScoreDisplay.textContent = total;
+        totalScoreDisplay.textContent = total.toLocaleString();
+        
+        // Level Calculation
+        const level = Math.floor(Math.sqrt(total / 100)) + 1;
+        userLevelDisplay.textContent = `LV.${level}`;
+        
+        // Progress bar (if added later)
     }
 
     // --- Global Functions (Accessible from iframes) ---
@@ -143,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         gameStage.innerHTML = ''; 
         const iframe = document.createElement('iframe');
         // Ensure relative path from the current location
-        const gamePath = `./games/${gameId}/index.html`;
+        const gamePath = `./play/${gameId}/index.html`;
         iframe.src = gamePath;
         iframe.style.width = '100%';
         iframe.style.height = '100%';
@@ -221,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    document.querySelectorAll('.game-card:not(.locked)').forEach(card => {
+    document.querySelectorAll('.game-card:not(.locked), .btn-hero-play').forEach(card => {
         card.addEventListener('click', () => {
             playBeep(880);
             const gameId = card.dataset.game;
