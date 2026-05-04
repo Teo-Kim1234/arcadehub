@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아케이드 허브 - 프리미엄 미니 게임</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7000ff">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div id="hub-app">
+        <!-- Background Elements -->
+        <div class="bg-glow"></div>
+        <div class="bg-grid"></div>
+
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <span class="logo-icon">🕹️</span>
+                <h1>아케이드<span>허브</span></h1>
+            </div>
+            <div class="user-stats">
+                <div class="stat-item">
+                    <span class="label">총 점수</span>
+                    <span id="total-score" class="value">0</span>
+                </div>
+                <button id="btn-settings" class="btn-icon">⚙️</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <section id="game-selection" class="screen active">
+                <div class="section-title">
+                    <h2>도전을 선택하세요</h2>
+                    <p>게임을 선택하여 시작하세요. 더 많은 게임이 곧 추가됩니다!</p>
+                </div>
+
+                <div class="game-grid">
+                    <!-- Tetris Card -->
+                    <div class="game-card" data-game="tetris">
+                        <div class="card-image tetris-bg">
+                            <div class="card-overlay">
+                                <span class="badge">클래식</span>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Tetris</h3>
+                            <p>유행을 타지 않는 클래식 퍼즐 게임. 블록을 쌓고 생존하세요.</p>
+                            <div class="card-footer">
+                                <span class="high-score">최고: <span id="tetris-high-score">0</span></span>
+                                <button class="btn-play">지금 플레이</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snake Card -->
+                    <div class="game-card" data-game="snake">
+                        <div class="card-image snake-bg">
+                            <div class="card-overlay">
+                                <span class="badge">아케이드</span>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Snake</h3>
+                            <p>추억의 고전 핸드폰 스타일 스네이크 게임. 사과를 먹고 길게 키워보세요!</p>
+                            <div class="card-footer">
+                                <span class="high-score">최고: <span id="snake-high-score">0</span></span>
+                                <button class="btn-play">지금 플레이</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2048 Card -->
+                    <div class="game-card" data-game="2048">
+                        <div class="card-image bg-2048">
+                            <div class="card-overlay">
+                                <span class="badge">로직</span>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <h3>2048</h3>
+                            <p>타일을 합쳐서 2048 블록을 만들어보세요.</p>
+                            <div class="card-footer">
+                                <span class="high-score">최고: <span id="2048-high-score">0</span></span>
+                                <button class="btn-play">지금 플레이</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Minesweeper Card -->
+                    <div class="game-card" data-game="minesweeper">
+                        <div class="card-image minesweeper-bg">
+                            <div class="card-overlay">
+                                <span class="badge">전략</span>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Minesweeper</h3>
+                            <p>지뢰를 피해 모든 구역을 안전하게 탐색하세요.</p>
+                            <div class="card-footer">
+                                <span class="high-score">최고: <span id="minesweeper-high-score">0</span></span>
+                                <button class="btn-play">지금 플레이</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rhythm Card -->
+                    <div class="game-card" data-game="rhythm">
+                        <div class="card-image bg-rhythm">
+                            <div class="card-overlay">
+                                <span class="badge">뮤직</span>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Rhythm Dash</h3>
+                            <p>비트에 맞춰 노트를 타격하세요! 화려한 네온 비트의 향연.</p>
+                            <div class="card-footer">
+                                <span class="high-score">최고: <span id="rhythm-high-score">0</span></span>
+                                <button class="btn-play">지금 플레이</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Game Container -->
+            <section id="game-view" class="screen">
+                <div class="game-header">
+                    <button id="btn-back-to-hub" class="btn-back">
+                        <span class="icon">←</span> 허브로 돌아가기
+                    </button>
+                    <h2 id="current-game-title">TETRIS</h2>
+                </div>
+                <div id="game-stage">
+                    <!-- Game content will be injected here or controlled by sub-app scripts -->
+                </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 아케이드 허브. 프리미엄 미니 게임 컬렉션.</p>
+        </footer>
+    </div>
+
+    <!-- Settings Modal (Moved to top level) -->
+    <div id="settings-modal" class="modal-overlay">
+        <div class="glass-panel modal-content">
+            <button id="btn-close-settings" class="modal-close">&times;</button>
+            <h2>설정</h2>
+            <div class="settings-group">
+                <div class="setting-item">
+                    <span>효과음</span>
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-sound" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>배경음악</span>
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-music" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>모든 점수 초기화</span>
+                    <button id="btn-clear-scores" class="btn-danger">데이터 초기화</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker Registered'))
+                    .catch(err => console.log('Service Worker Registration Failed'));
+            });
+        }
+    </script>
+</body>
+</html>

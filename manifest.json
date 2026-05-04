@@ -1,0 +1,17 @@
+{
+  "name": "아케이드 허브 (Arcade Hub)",
+  "short_name": "아케이드허브",
+  "description": "프리미엄 미니 게임 모음집",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0c",
+  "theme_color": "#7000ff",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/5260/5260498.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}
